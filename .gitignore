@@ -1,0 +1,54 @@
+# =====================================================================
+# Git Ignore for PyTorch & Deep Learning Workspace
+# =====================================================================
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# PyTorch checkpoints and large model weights (regenerated via training)
+*.pt
+*.pth
+*.pwf
+*.bin
+*.onnx
+*.engine
+*.safetensors
+*.ckpt
+**/weights/
+
+# Datasets (downloaded automatically at runtime)
+**/data/
+**/datasets/
+*.tar.gz
+*.tar
+*.zip
+*.gz
+
+# Training artifacts, experiment runs, and logs
+**/runs/
+**/train_output/
+**/scratch_demo_output/
+**/compare_output/
+**/output/
+*.log
+
+# Generated output plots / visual results
+**/docker_data/*.png
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
