@@ -118,3 +118,4 @@ When unfreezing pretrained layers, use a smaller learning rate so you don't dest
 ### 5. Two-Phase Training Strategy
 - **Phase 1:** Only train the new head. Fast, safe, gets you most of the accuracy.
 - **Phase 2:** Unfreeze the last conv block and fine-tune with low LR. Squeezes out the remaining accuracy by adapting deep features to your specific task.
+
