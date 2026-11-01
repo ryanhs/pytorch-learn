@@ -15,13 +15,19 @@ pytorch-learn/
 │   ├── run.sh                  # Interactive container launcher
 │   ├── README.md               # Detailed notes for test 1
 │   └── docker_data/            # Scripts (stress tests, YOLO demo, synthetic benchmarks)
-└── test2/                      # Test 2: Real PyTorch CNN Learning (CIFAR-10)
+├── test2/                      # Test 2: Real PyTorch CNN Learning (CIFAR-10)
+│   ├── Dockerfile              # rocm/pytorch container with torchvision & matplotlib
+│   ├── run.sh                  # Interactive container launcher (network enabled)
+│   ├── README.md               # Step-by-step guide to PyTorch fundamentals
+│   └── docker_data/            # Training pipeline & prediction tools
+│       ├── train_cifar10.py    # Custom CNN training with Before vs After evaluation
+│       └── predict.py          # Interactive model inference tool
+└── test3/                      # Test 3: Transfer Learning (Pretrained ResNet18)
     ├── Dockerfile              # rocm/pytorch container with torchvision & matplotlib
     ├── run.sh                  # Interactive container launcher (network enabled)
-    ├── README.md               # Step-by-step guide to PyTorch fundamentals
-    └── docker_data/            # Training pipeline & prediction tools
-        ├── train_cifar10.py    # Custom CNN training with Before vs After evaluation
-        └── predict.py          # Interactive model inference tool
+    ├── README.md               # Transfer learning concepts & walkthrough
+    └── docker_data/
+        └── train_transfer.py   # Two-phase fine-tuning pipeline with comparison plots
 ```
 
 ---

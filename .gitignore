@@ -42,6 +42,10 @@ __pycache__/
 !test2/docker_data/cifar10_cnn.pt
 !test2/docker_data/comparison_before_after.png
 !test2/docker_data/training_curves.png
+!test3/docker_data/resnet18_cifar10_finetuned.pt
+!test3/docker_data/comparison_transfer_learning.png
+!test3/docker_data/training_curves_transfer.png
+!test3/docker_data/parameter_efficiency.png
 
 # Virtual environments
 .env

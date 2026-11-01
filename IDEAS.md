@@ -75,3 +75,4 @@ This document outlines candidate concepts and directions for **`test3`** as part
 | **B. Text Gen (RNN)** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⚡ Fast (~1m) | Strong alternative |
 | **C. DCGAN** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⏱️ Moderate (~3–5m) | Great for generative |
 | **D. Autoencoder** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⚡ Fast (~1–2m) | Great for unsupervised |
+
