@@ -51,10 +51,20 @@ What you will see:
 5. **Comparison summary**: Prints a terminal comparison table and exports `comparison_before_after.png` and `training_curves.png`.
 
 ### Step 3: Run Interactive Predictions
-Once trained, you can inspect new random images anytime:
+Since the trained model checkpoint (`cifar10_cnn.pt`) is archived directly in this repository, you can inspect predictions immediately without having to re-train:
 ```bash
 python predict.py
 ```
+
+---
+
+## Archived Results
+
+### Before vs. After Training
+![Before vs After Comparison](docker_data/comparison_before_after.png)
+
+### Training & Validation Curves
+![Training Curves](docker_data/training_curves.png)
 
 ---
 

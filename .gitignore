@@ -38,6 +38,11 @@ __pycache__/
 # Generated output plots / visual results
 **/docker_data/*.png
 
+# Archived study checkpoints & visual results (whitelisted special cases)
+!test2/docker_data/cifar10_cnn.pt
+!test2/docker_data/comparison_before_after.png
+!test2/docker_data/training_curves.png
+
 # Virtual environments
 .env
 .venv
