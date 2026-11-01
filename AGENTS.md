@@ -28,3 +28,4 @@ When working in this repository:
 3. **Pedagogical Code Quality:**
    * Keep PyTorch code readable, clean, and educational.
    * Favor clear, idiomatic PyTorch workflows (`Dataset` / `DataLoader`, standard forward/backward passes, explicit training loops) over opaque wrappers when teaching fundamental concepts.
+
