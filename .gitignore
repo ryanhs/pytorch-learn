@@ -51,6 +51,13 @@ __pycache__/
 !test4/docker_data/editor_cutout_showcase.png
 !test4/docker_data/training_curves_unet.png
 !test4/docker_data/predict_cutout_result.png
+!test5/docker_data/vae_creator.pt
+!test5/docker_data/creator_morph_grid.png
+!test5/docker_data/creator_random_generations.png
+!test5/docker_data/creator_reconstructions.png
+!test5/docker_data/training_curves_vae.png
+!test5/docker_data/interactive_morph_walk.png
+!test5/docker_data/interactive_random_creations.png
 
 # Virtual environments
 .env

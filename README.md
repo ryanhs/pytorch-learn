@@ -29,13 +29,20 @@ pytorch-learn/
 │   └── docker_data/
 │       ├── train_transfer.py   # Two-phase fine-tuning pipeline with comparison plots
 │       └── predict.py          # Interactive prediction tool
-└── test4/                      # Test 4: The Editor — Semantic Segmentation (UNet)
-    ├── Dockerfile              # rocm/pytorch container with torchvision & matplotlib
+├── test4/                      # Test 4: The Editor — Semantic Segmentation (UNet)
+│   ├── Dockerfile              # rocm/pytorch container with torchvision & matplotlib
+│   ├── run.sh                  # Interactive container launcher
+│   ├── README.md               # UNet architecture & cutout guide
+│   └── docker_data/
+│       ├── train_unet.py       # UNet training with skip connections & IoU metrics
+│       └── predict.py          # Live background cutout & replacement tool
+└── test5/                      # Test 5: The Creator — Generative AI (Conv-VAE)
+    ├── Dockerfile              # rocm/pytorch container with torchvision & scipy
     ├── run.sh                  # Interactive container launcher
-    ├── README.md               # UNet architecture & cutout guide
+    ├── README.md               # Latent space exploration & continuous morph guide
     └── docker_data/
-        ├── train_unet.py       # UNet training with skip connections & IoU metrics
-        └── predict.py          # Live background cutout & replacement tool
+        ├── train_vae.py        # Conv-VAE training with reparameterization trick
+        └── predict.py          # Interactive latent walk & synthesis tool
 ```
 
 ---
