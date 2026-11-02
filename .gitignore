@@ -46,6 +46,11 @@ __pycache__/
 !test3/docker_data/comparison_transfer_learning.png
 !test3/docker_data/training_curves_transfer.png
 !test3/docker_data/parameter_efficiency.png
+!test4/docker_data/unet_segmentation.pt
+!test4/docker_data/comparison_segmentation.png
+!test4/docker_data/editor_cutout_showcase.png
+!test4/docker_data/training_curves_unet.png
+!test4/docker_data/predict_cutout_result.png
 
 # Virtual environments
 .env

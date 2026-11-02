@@ -11,7 +11,8 @@ This document tracks our completed learning milestones and outlines candidate ar
 | **Test 1** | **ROCm GPU Verification** | YOLOv8 / Synthetic Tensors | Verified AMD ROCm drivers, Docker pass-through (`/dev/kfd`, `/dev/dri`), and device performance. | **Completed [✓]** |
 | **Test 2** | **PyTorch Foundations** | Custom CNN / CIFAR-10 | Built 5-step autograd loop from scratch (`nn.Module`, `DataLoader`, loss drop, ~10% $\rightarrow$ ~80% accuracy). | **Completed [✓]** |
 | **Test 3** | **Transfer Learning** | Pretrained ResNet18 / CIFAR-10 | Model surgery: layer freezing (`requires_grad=False`), head swap, differential learning rates, ~95%+ accuracy in seconds. | **Completed [✓]** |
-| **Test 4** | **Generative or Pixel-Level Vision** | **VAE vs. UNet** (Under Decision) | Moving beyond whole-image classification into image synthesis or dense pixel prediction. | **In Planning** |
+| **Test 4** | **"The Editor"** | Mini-UNet / Procedural Shapes | Dense pixel-level segmentation, skip connections (`torch.cat`), combined BCE+Dice loss, background cutout. | **Ready to Run [▶]** |
+| **Test 5** | **"The Creator"** | Variational Autoencoder (VAE) | Generative synthesis, latent space exploration, reparameterization trick, morphing continuous distributions. | **Queued Next [⏳]** |
 
 ---
 

@@ -22,12 +22,20 @@ pytorch-learn/
 │   └── docker_data/            # Training pipeline & prediction tools
 │       ├── train_cifar10.py    # Custom CNN training with Before vs After evaluation
 │       └── predict.py          # Interactive model inference tool
-└── test3/                      # Test 3: Transfer Learning (Pretrained ResNet18)
+├── test3/                      # Test 3: Transfer Learning (Pretrained ResNet18)
+│   ├── Dockerfile              # rocm/pytorch container with torchvision & matplotlib
+│   ├── run.sh                  # Interactive container launcher (network enabled)
+│   ├── README.md               # Transfer learning concepts & walkthrough
+│   └── docker_data/
+│       ├── train_transfer.py   # Two-phase fine-tuning pipeline with comparison plots
+│       └── predict.py          # Interactive prediction tool
+└── test4/                      # Test 4: The Editor — Semantic Segmentation (UNet)
     ├── Dockerfile              # rocm/pytorch container with torchvision & matplotlib
-    ├── run.sh                  # Interactive container launcher (network enabled)
-    ├── README.md               # Transfer learning concepts & walkthrough
+    ├── run.sh                  # Interactive container launcher
+    ├── README.md               # UNet architecture & cutout guide
     └── docker_data/
-        └── train_transfer.py   # Two-phase fine-tuning pipeline with comparison plots
+        ├── train_unet.py       # UNet training with skip connections & IoU metrics
+        └── predict.py          # Live background cutout & replacement tool
 ```
 
 ---
