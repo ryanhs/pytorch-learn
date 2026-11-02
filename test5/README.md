@@ -77,10 +77,29 @@ What you will see:
    * `training_curves_vae.png`: Total loss, reconstruction loss, and KL divergence progression.
 
 ### Step 3: Run Interactive Latent Morph Walking
-Interpolate smoothly between any two digits in 10 steps:
+Since `vae_creator.pt` is archived in the repository, you can explore the latent space anytime without re-training:
 ```bash
 python predict.py
 ```
+
+---
+
+## Archived Results
+
+### The Creator's Mind: 2D Continuous Latent Morph Grid
+![Latent Morph Grid](docker_data/creator_morph_grid.png)
+
+### Synthesized from Pure Random Noise $\mathcal{N}(0, 1)$
+![Random Generations](docker_data/creator_random_generations.png)
+
+### Continuous Latent Walk Interpolation (Digit Morphing)
+![Interactive Morph Walk](docker_data/interactive_morph_walk.png)
+
+### Reconstruction Quality Check (Original vs. Before vs. After)
+![Reconstruction Check](docker_data/creator_reconstructions.png)
+
+### Training Curves (Loss, BCE & KL Divergence)
+![Training Curves](docker_data/training_curves_vae.png)
 
 ---
 
@@ -102,3 +121,4 @@ python predict.py
 
 3. **Latent Manifold Navigation:**
    Feeding continuous coordinates into `model.decode(z)` allows us to walk through the generative distribution.
+

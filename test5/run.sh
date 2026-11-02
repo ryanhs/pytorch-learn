@@ -15,3 +15,4 @@ docker run --rm -it \
   -v "$REPO_DIR/data":/app/data \
   -w /app \
   rocmpytorch:test5 bash
+
