@@ -36,13 +36,23 @@ pytorch-learn/
 │   └── docker_data/
 │       ├── train_unet.py       # UNet training with skip connections & IoU metrics
 │       └── predict.py          # Live background cutout & replacement tool
-└── test5/                      # Test 5: The Creator — Generative AI (Conv-VAE)
-    ├── Dockerfile              # rocm/pytorch container with torchvision & scipy
-    ├── run.sh                  # Interactive container launcher
-    ├── README.md               # Latent space exploration & continuous morph guide
+├── test5/                      # Test 5: The Creator — Generative AI (Conv-VAE)
+│   ├── Dockerfile              # rocm/pytorch container with torchvision & scipy
+│   ├── run.sh                  # Interactive container launcher
+│   ├── README.md               # Latent space exploration & continuous morph guide
+│   └── docker_data/
+│       ├── train_vae.py        # Conv-VAE training with reparameterization trick
+│       └── predict.py          # Interactive latent walk & synthesis tool
+└── test6/                      # Product pilot: food-label OCR dataset curation
+    ├── Dockerfile              # Lightweight data-preparation container
+    ├── run.sh                  # Build container and open an interactive shell
+    ├── README.md               # Dataset setup, manual review & license notes
     └── docker_data/
-        ├── train_vae.py        # Conv-VAE training with reparameterization trick
-        └── predict.py          # Interactive latent walk & synthesis tool
+        ├── pilot_barcodes.txt  # Small, editable seed list
+        ├── prepare_dataset.py  # Rate-limited Open Food Facts image downloader
+        ├── run_ocr.py          # Tesseract OCR baseline and verified-text metrics
+        ├── test_prepare_dataset.py # Focused tests for the curation workflow
+        └── test_run_ocr.py     # OCR and error-metric tests
 ```
 
 ---
@@ -85,3 +95,14 @@ Inside the container:
 python test.py
 ```
 
+### Preparing Test 6 (Food Label OCR Pilot)
+```bash
+cd test6
+./run.sh
+```
+Inside the interactive container shell:
+```bash
+python prepare_dataset.py --barcodes pilot_barcodes.txt --output-dir data
+python run_ocr.py
+```
+Images, manifest, and OCR results are written to ignored `test6/data/`. OCR metrics require manually verified full-image transcriptions. See [test6/README.md](test6/README.md) for curation and license requirements.

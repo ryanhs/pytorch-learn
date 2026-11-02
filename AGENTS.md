@@ -28,4 +28,6 @@ When working in this repository:
 3. **Pedagogical Code Quality:**
    * Keep PyTorch code readable, clean, and educational.
    * Favor clear, idiomatic PyTorch workflows (`Dataset` / `DataLoader`, standard forward/backward passes, explicit training loops) over opaque wrappers when teaching fundamental concepts.
-
+4. **Product Direction:**
+   * Prefer experiments that advance the offline mobile food-label reader described in [`IDEAS.md`](IDEAS.md), rather than standalone toy models or a generic chatbot.
+   * Favor appropriately licensed, open-weight models that can be evaluated and optimized for on-device inference. Keep deterministic, inspectable fallbacks for safety-relevant output, and never present ingredient matching as a guarantee that food is safe.
