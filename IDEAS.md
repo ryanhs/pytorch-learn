@@ -12,7 +12,7 @@ This document tracks our completed learning milestones and outlines candidate ar
 | **Test 2** | **PyTorch Foundations** | Custom CNN / CIFAR-10 | Built 5-step autograd loop from scratch (`nn.Module`, `DataLoader`, loss drop, ~10% $\rightarrow$ ~80% accuracy). | **Completed [✓]** |
 | **Test 3** | **Transfer Learning** | Pretrained ResNet18 / CIFAR-10 | Model surgery: layer freezing (`requires_grad=False`), head swap, differential learning rates, ~95%+ accuracy in seconds. | **Completed [✓]** |
 | **Test 4** | **"The Editor"** | Mini-UNet / Procedural Shapes | Dense pixel-level segmentation, skip connections (`torch.cat`), combined BCE+Dice loss, background cutout. | **Completed [✓]** |
-| **Test 5** | **"The Creator"** | Variational Autoencoder (VAE) | Generative synthesis, latent space exploration, reparameterization trick, morphing continuous distributions. | **Building Now [▶]** |
+| **Test 5** | **"The Creator"** | Variational Autoencoder (VAE) | Generative synthesis, latent space exploration, reparameterization trick, morphing continuous distributions. | **Completed [✓]** |
 
 ---
 
