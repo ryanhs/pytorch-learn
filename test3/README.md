@@ -51,10 +51,11 @@ test3/
 ├── README.md                           # This guide
 └── docker_data/
     ├── train_transfer.py               # Full transfer learning pipeline
-    ├── resnet18_cifar10_finetuned.pt    # Saved fine-tuned weights (after training)
-    ├── comparison_transfer_learning.png # Before vs. After visual grid
-    ├── training_curves_transfer.png     # Loss & accuracy over both phases
-    └── parameter_efficiency.png         # Accuracy vs. parameters trained comparison
+    ├── predict.py                      # Interactive inference tool with confidence bars
+    ├── resnet18_cifar10_finetuned.pt    # Saved fine-tuned weights (archived)
+    ├── comparison_transfer_learning.png # Before vs. After visual grid (archived)
+    ├── training_curves_transfer.png     # Loss & accuracy over both phases (archived)
+    └── parameter_efficiency.png         # Accuracy vs. parameters trained (archived)
 ```
 
 ---
@@ -72,13 +73,24 @@ cd test3
 python train_transfer.py
 ```
 
-The script will:
-1. Download CIFAR-10 (~170 MB, first time only)
-2. Download pretrained ResNet18 weights (~45 MB, first time only)
-3. Show predictions **before** fine-tuning (random head = blind guessing)
-4. Fine-tune in two phases on your AMD ROCm GPU
-5. Show predictions **after** fine-tuning (accurate + confident)
-6. Generate comparison plots
+### Step 3: Test Interactive Predictions (Instant)
+Since the fine-tuned weights are already archived in the repository, you can test predictions immediately without retraining:
+```bash
+python predict.py
+```
+
+---
+
+## Archived Results
+
+### Before vs. After Fine-Tuning
+![Before vs After Comparison](docker_data/comparison_transfer_learning.png)
+
+### Training Curves (Phase 1 vs. Phase 2)
+![Training Curves](docker_data/training_curves_transfer.png)
+
+### Accuracy vs. Parameters Trained
+![Parameter Efficiency](docker_data/parameter_efficiency.png)
 
 ---
 
