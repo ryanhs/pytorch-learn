@@ -1,78 +1,73 @@
-# Test 3: Ideation & Roadmap
+# PyTorch & ROCm Learning Roadmap: Test 4 Ideation
 
-This document outlines candidate concepts and directions for **`test3`** as part of our PyTorch + AMD ROCm learning progression.
+This document tracks our completed learning milestones and outlines candidate architectures for **`test4`**.
 
 ---
 
 ## The Learning Progression So Far
 
-| Stage | Focus | Key Takeaway |
-| :--- | :--- | :--- |
-| **Test 1** | **ROCm GPU Verification** | Checked AMD ROCm drivers, Docker setup, device access (`/dev/kfd`, `/dev/dri`), and basic library wrappers (Ultralytics YOLOv8). |
-| **Test 2** | **PyTorch Foundations from Scratch** | Real training loop on CIFAR-10 (`DataLoader`, `nn.Module`, 5-step autograd loop, before vs. after evaluation, visual loss curves). |
-| **Test 3** | **Next Level (TBD)** | Moving from basic training from scratch into modern, practical, or generative deep learning paradigms. |
+| Stage | Focus | Architecture / Dataset | Key Takeaway | Status |
+| :--- | :--- | :--- | :--- | :---: |
+| **Test 1** | **ROCm GPU Verification** | YOLOv8 / Synthetic Tensors | Verified AMD ROCm drivers, Docker pass-through (`/dev/kfd`, `/dev/dri`), and device performance. | **Completed [✓]** |
+| **Test 2** | **PyTorch Foundations** | Custom CNN / CIFAR-10 | Built 5-step autograd loop from scratch (`nn.Module`, `DataLoader`, loss drop, ~10% $\rightarrow$ ~80% accuracy). | **Completed [✓]** |
+| **Test 3** | **Transfer Learning** | Pretrained ResNet18 / CIFAR-10 | Model surgery: layer freezing (`requires_grad=False`), head swap, differential learning rates, ~95%+ accuracy in seconds. | **Completed [✓]** |
+| **Test 4** | **Generative or Pixel-Level Vision** | **VAE vs. UNet** (Under Decision) | Moving beyond whole-image classification into image synthesis or dense pixel prediction. | **In Planning** |
 
 ---
 
-## Candidate Directions for Test 3
+## Test 4 Candidates: Head-to-Head
 
-### 🥇 Option A: Transfer Learning & Fine-Tuning (Computer Vision)
-* **The Concept:** In modern deep learning, models are rarely trained from scratch on raw pixels. Instead, engineers use **transfer learning**: starting from a model (like **ResNet-18**) pretrained on millions of images (ImageNet), freezing its feature extraction layers, and fine-tuning just the head on a specific target dataset.
-* **Why It Fits:**
-  * Direct evolutionary step from `test2`.
-  * Demonstrates how a pretrained backbone reaches **95%+ accuracy in just 2–3 epochs**, easily outperforming the ~80% achieved from scratch.
-  * Teaches how real-world vision models are deployed in production.
-* **Key PyTorch Concepts Introduced:**
-  * Loading pretrained weights (`torchvision.models.resnet18(weights=ResNet18_Weights.DEFAULT)`).
-  * Freezing layer gradients (`param.requires_grad = False`).
-  * Replacing final classification heads (`model.fc = nn.Linear(...)`).
-  * Differential learning rates (small LR for backbone, higher LR for new head).
+The user has narrowed down the focus to two premier computer vision paradigms:
 
 ---
 
-### 🥈 Option B: Text Generation with an RNN / Mini-Language Model (NLP)
-* **The Concept:** Branching outside computer vision into natural language processing (NLP). The model learns to predict the next character in a text sequence (e.g., trained on Shakespeare or open-domain literature).
-* **Why It Fits:**
-  * Completely different domain that proves PyTorch handles arbitrary sequences, not just 2D images.
-  * Very dramatic visual "Before vs. After":
-    * **Before training:** Generates random, unreadable symbol soup (`xK#m2ä..`).
-    * **After training:** Generates syntactically coherent words, punctuation, and dialogue structure.
-* **Key PyTorch Concepts Introduced:**
-  * Embedding layers (`nn.Embedding`).
-  * Recurrent layers (`nn.LSTM` or `nn.GRU`) and sequence dimensions `(batch, seq_len, features)`.
-  * Autoregressive text generation loop with temperature sampling.
+### Candidate A: Variational Autoencoder (VAE) — Generative Image Synthesis
+* **The Paradigm:** Instead of predicting a single label from an image, the model learns the continuous probability distribution of images and **generates brand new images** from random numbers.
+* **Architecture:**
+  * **Encoder:** Compresses a 28×28 or 32×32 image into two vectors: Mean ($\mu$) and Log-Variance ($\log \sigma^2$).
+  * **Latent Bottleneck:** Samples a vector $z$ using the **Reparameterization Trick**: $z = \mu + \epsilon \cdot \sigma$ (where $\epsilon \sim \mathcal{N}(0, I)$).
+  * **Decoder:** Reconstructs the image from $z$ using transposed convolutions (`nn.ConvTranspose2d`).
+* **Visual Deliverables / Outputs:**
+  1. **Reconstruction Check:** Side-by-side plot of Original vs. Reconstructed images.
+  2. **Generation from Pure Noise:** Feeding random coordinates $\mathcal{N}(0, 1)$ into the Decoder to synthesize never-before-seen images.
+  3. **Latent Space Morph Grid:** A 2D grid smoothly morphing between classes (e.g., transforming a handwritten digit `3` continuously into an `8`).
+* **Key PyTorch Concepts Taught:**
+  * Multi-term custom loss: $\text{Total Loss} = \text{Reconstruction Loss (BCE/MSE)} + \text{KL Divergence}$.
+  * The Reparameterization Trick (how backpropagation works through stochastic nodes).
+  * Up-sampling with `nn.ConvTranspose2d`.
 
 ---
 
-### 🥉 Option C: Deep Convolutional GAN (Generative Modeling)
-* **The Concept:** Training two networks against each other: a **Generator** that creates images out of random latent noise, and a **Discriminator** that tries to distinguish real images from fake ones.
-* **Why It Fits:**
-  * Fascinating generative behavior: the network creates new images that never previously existed.
-  * Visceral progression: watching the generator evolve from television static to clean handwritten digits or shapes.
-* **Key PyTorch Concepts Introduced:**
-  * Dual-model alternating training loop (`optimizer_G` and `optimizer_D`).
-  * Transposed convolutions (`nn.ConvTranspose2d`) for image upsampling.
-  * Adversarial minimax loss functions (`nn.BCELoss`).
-
----
-
-### 🏅 Option D: Denoising Autoencoder (Self-Supervised Reconstruction)
-* **The Concept:** Taking clean images, corrupting them with severe synthetic noise or occlusion, and training an Encoder-Decoder network to reconstruct the original clean image.
-* **Why It Fits:**
-  * Clear side-by-side visual outputs (Noisy Input $\rightarrow$ Encoded Bottleneck $\rightarrow$ Reconstructed Output).
-  * Demonstrates dimensionality reduction and latent space representation.
-* **Key PyTorch Concepts Introduced:**
-  * Encoder-decoder architecture (`Conv2d` downsampling $\rightarrow$ latent vector $\rightarrow$ `ConvTranspose2d` upsampling).
-  * Pixel-wise reconstruction loss (`nn.MSELoss` or `nn.L1Loss`).
+### Candidate B: Semantic Segmentation with a Mini-UNet — Pixel-Level Vision
+* **The Paradigm:** Instead of whole-image classification ("this picture is a dog"), the model classifies **every single individual pixel** ("these pixels are the dog, these pixels are the background").
+* **Architecture:**
+  * **Encoder (Contracting Path):** Repeated convolutions and pooling to capture high-level context.
+  * **Bottleneck:** Deepest compressed feature representation.
+  * **Decoder (Expanding Path):** Transposed convolutions to recover spatial resolution.
+  * **Skip Connections:** Concatenating encoder feature maps directly to decoder feature maps (`torch.cat([dec, skip], dim=1)`), preserving sharp high-resolution boundaries.
+* **Visual Deliverables / Outputs:**
+  1. **Before vs. After Overlay:** Untrained model outputs noisy static over the image; trained model outputs crisp pixel-accurate object masks.
+  2. **Three-Panel Inspection:** Original Image $\rightarrow$ Ground Truth Mask $\rightarrow$ Predicted Segmentation Mask.
+* **Key PyTorch Concepts Taught:**
+  * Skip connections and tensor concatenation along channel dimensions.
+  * Multi-dimensional loss computation (`[Batch, Classes, Height, Width]`).
+  * Intersection-over-Union (IoU) and Dice coefficient evaluation metrics.
 
 ---
 
 ## Comparison Matrix
 
-| Option | Practical Value | Fun / Wow Factor | ROCm GPU Speed | Recommended Next? |
-| :--- | :---: | :---: | :---: | :---: |
-| **A. Transfer Learning** | ⭐⭐⭐⭐⭐ (Highest) | ⭐⭐⭐ | ⚡ Ultra-fast (~30s) | **Yes (Top Pick)** |
-| **B. Text Gen (RNN)** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⚡ Fast (~1m) | Strong alternative |
-| **C. DCGAN** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⏱️ Moderate (~3–5m) | Great for generative |
-| **D. Autoencoder** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⚡ Fast (~1–2m) | Great for unsupervised |
+| Criteria | Candidate A: Variational Autoencoder (VAE) | Candidate B: Mini-UNet Segmentation |
+| :--- | :--- | :--- |
+| **Core Skill Learned** | Generative modeling & latent space representation | Dense pixel classification & skip connections |
+| **Dataset Requirement** | MNIST / Fashion-MNIST (ultra-lightweight, built-in) | Oxford-IIIT Pet or Synthetic Shapes (lightweight masks) |
+| **ROCm GPU Train Time** | ~30–45 seconds | ~45–60 seconds |
+| **Visual Wow Factor** | High (generates new images + smooth latent morphing) | High (pixel-accurate outline masks overlaid on photos) |
+| **Industry Usage** | Anomaly detection, image compression, diffusion foundation | Medical imaging, autonomous driving, background cutout |
 
+---
+
+## Decision Guide for Test 4
+
+* **Choose VAE (Candidate A)** if you want to explore **Generative AI** — understanding how neural networks create new content and navigate mathematical latent spaces.
+* **Choose UNet (Candidate B)** if you want to master **advanced discriminative vision** — moving from basic classification to pixel-level object extraction and skip-connection architectures.
