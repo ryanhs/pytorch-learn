@@ -74,10 +74,26 @@ What you will see:
    * `training_curves_unet.png`: Loss descent and IoU curve.
 
 ### Step 3: Run Live Interactive Editor Tool
-Test cutting out brand-new random objects anytime:
+Since the trained UNet weights (`unet_segmentation.pt`) are archived in the repository, you can test live background cutouts immediately without re-training:
 ```bash
 python predict.py
 ```
+
+---
+
+## Archived Results
+
+### The Editor Showcase: Object Cutout & Background Replacement
+![Editor Cutout Showcase](docker_data/editor_cutout_showcase.png)
+
+### Before vs. After Training (Noise vs. Clean Boundary)
+![Before vs After Segmentation](docker_data/comparison_segmentation.png)
+
+### Live Interactive Tool Cutout
+![Live Predict Cutout](docker_data/predict_cutout_result.png)
+
+### Training Curves (Loss Descent & IoU Growth)
+![Training Curves](docker_data/training_curves_unet.png)
 
 ---
 
@@ -96,3 +112,4 @@ python predict.py
 
 3. **Segmentation Metric: IoU (Intersection over Union / Jaccard Index):**
    $$\text{IoU} = \frac{|\text{Prediction} \cap \text{Ground Truth}|}{|\text{Prediction} \cup \text{Ground Truth}|}$$
+
